@@ -33,13 +33,7 @@ const convertBinary = (binary: string, format: Format): string | number[] | bool
   }
 };
 
-/**
- * Returns the total number of permutations for `n` bits.
- *
- * @param n - Number of bits.
- * @returns The number of binary permutations (2^n).
- */
-export const getPermutationCount = (n: number) => 1 << n;
+const getPermutationCount = (n: number) => 1 << n;
 
 /**
  * Generator function that yields all binary permutations for `n` bits,
