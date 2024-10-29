@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/kamdz/bin-perm-gen/compare/v1.0.2...v1.0.3) (2024-10-29)
+
+
+### Bug Fixes
+
+* small refactor ([4e65199](https://github.com/kamdz/bin-perm-gen/commit/4e65199b72596c78bf9d264cfdcd456bed3fd5c9))
+
 ## [1.0.2](https://github.com/kamdz/bin-perm-gen/compare/v1.0.1...v1.0.2) (2024-10-29)
 
 
