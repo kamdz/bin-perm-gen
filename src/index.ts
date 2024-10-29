@@ -51,11 +51,22 @@ const getPermutationCount = (n: number) => 1 << n;
  * }
  */
 
-function getBinaryPermutations(n: number, options: { format: 'boolean' }): Generator<boolean[]>;
-function getBinaryPermutations(n: number, options: { format: 'string' }): Generator<string>;
-function getBinaryPermutations(n: number, options: { format: 'number' }): Generator<number[]>;
-function getBinaryPermutations(n: number, options?: Options): Generator<string | number[] | boolean[]>;
-function* getBinaryPermutations(n: number, options: Options = {}): Generator<string | number[] | boolean[]> {
+function getBinaryPermutations(n: number): Generator<boolean[]>;
+function getBinaryPermutations(
+  n: number,
+  options: { format: 'boolean' } & Partial<Omit<Options, 'format'>>
+): Generator<boolean[]>;
+function getBinaryPermutations(
+  n: number,
+  options: { format: 'string' } & Partial<Omit<Options, 'format'>>
+): Generator<string>;
+function getBinaryPermutations(
+  n: number,
+  options: { format: 'number' } & Partial<Omit<Options, 'format'>>
+): Generator<number[]>;
+function getBinaryPermutations(n: number, options: Omit<Options, 'format'>): Generator<boolean[]>;
+
+function* getBinaryPermutations(n: number, options: Options = {}): Generator<boolean[] | string | number[]> {
   const { format = 'boolean', minOnes = 0, maxOnes = n } = options;
 
   if (!Number.isInteger(n) || n < 0) {
@@ -76,5 +87,4 @@ function* getBinaryPermutations(n: number, options: Options = {}): Generator<str
     yield convertBinary(binary, format);
   }
 }
-
 export default getBinaryPermutations;
