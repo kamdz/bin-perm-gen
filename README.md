@@ -42,6 +42,9 @@ for (const permutation of generatorWithOptions) {
 // '0110'
 // '1001'
 // ...
+
+// Convert to array, recommended only for small n parameter
+const generatedArray = [...getBinaryPermutations(4)];
 ```
 
 ## 🔧 API
