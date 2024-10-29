@@ -1,12 +1,9 @@
-type Format = 'boolean' | 'string' | 'number';
-
 interface Options {
   /**
    * The format of the data returned by the generator.
-   * Can be 'boolean', 'string', or 'number'.
    * @default 'boolean'
    */
-  format?: Format;
+  format?: 'boolean' | 'string' | 'number';
 
   /**
    * The minimum number of `1`s (true values) that must appear in the returned permutations.
@@ -20,20 +17,6 @@ interface Options {
    */
   maxOnes?: number;
 }
-
-const convertBinary = (binary: string, format: Format): string | number[] | boolean[] => {
-  switch (format) {
-    case 'string':
-      return binary;
-    case 'number':
-      return binary.split('').map(Number);
-    case 'boolean':
-    default:
-      return binary.split('').map(bit => bit === '1');
-  }
-};
-
-const getPermutationCount = (n: number) => 1 << n;
 
 /**
  * Generator function that yields all binary permutations for `n` bits,
@@ -52,20 +35,10 @@ const getPermutationCount = (n: number) => 1 << n;
  */
 
 function getBinaryPermutations(n: number): Generator<boolean[]>;
-function getBinaryPermutations(
-  n: number,
-  options: { format: 'boolean' } & Partial<Omit<Options, 'format'>>
-): Generator<boolean[]>;
-function getBinaryPermutations(
-  n: number,
-  options: { format: 'string' } & Partial<Omit<Options, 'format'>>
-): Generator<string>;
-function getBinaryPermutations(
-  n: number,
-  options: { format: 'number' } & Partial<Omit<Options, 'format'>>
-): Generator<number[]>;
+function getBinaryPermutations(n: number, options: { format: 'boolean' } & Partial<Options>): Generator<boolean[]>;
+function getBinaryPermutations(n: number, options: { format: 'string' } & Partial<Options>): Generator<string>;
+function getBinaryPermutations(n: number, options: { format: 'number' } & Partial<Options>): Generator<number[]>;
 function getBinaryPermutations(n: number, options: Omit<Options, 'format'>): Generator<boolean[]>;
-
 function* getBinaryPermutations(n: number, options: Options = {}): Generator<boolean[] | string | number[]> {
   const { format = 'boolean', minOnes = 0, maxOnes = n } = options;
 
@@ -73,7 +46,7 @@ function* getBinaryPermutations(n: number, options: Options = {}): Generator<boo
     throw new Error('n must be a non-negative integer');
   }
 
-  const maxPermutations = getPermutationCount(n);
+  const maxPermutations = 1 << n;
 
   for (let i = 0; i < maxPermutations; i++) {
     const binary = i.toString(2).padStart(n, '0');
@@ -84,7 +57,17 @@ function* getBinaryPermutations(n: number, options: Options = {}): Generator<boo
       continue;
     }
 
-    yield convertBinary(binary, format);
+    switch (format) {
+      case 'string':
+        yield binary;
+        break;
+      case 'number':
+        yield binary.split('').map(Number);
+        break;
+      case 'boolean':
+      default:
+        yield binary.split('').map(bit => bit === '1');
+    }
   }
 }
 export default getBinaryPermutations;
