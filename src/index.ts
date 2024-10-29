@@ -50,6 +50,11 @@ const getPermutationCount = (n: number) => 1 << n;
  *     console.log(perm); // Logs each binary permutation as an array of booleans by default.
  * }
  */
+
+function getBinaryPermutations(n: number, options: { format: 'boolean' }): Generator<boolean[]>;
+function getBinaryPermutations(n: number, options: { format: 'string' }): Generator<string>;
+function getBinaryPermutations(n: number, options: { format: 'number' }): Generator<number[]>;
+function getBinaryPermutations(n: number, options?: Options): Generator<string | number[] | boolean[]>;
 function* getBinaryPermutations(n: number, options: Options = {}): Generator<string | number[] | boolean[]> {
   const { format = 'boolean', minOnes = 0, maxOnes = n } = options;
 
