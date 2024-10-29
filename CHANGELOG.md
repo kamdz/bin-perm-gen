@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/kamdz/bin-perm-gen/compare/v1.0.1...v1.0.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* **typings:** strict typing ([04b6f29](https://github.com/kamdz/bin-perm-gen/commit/04b6f293722a843c697c5e800aa3e2cb85561b01))
+
 ## [1.0.1](https://github.com/kamdz/bin-perm-gen/compare/v1.0.0...v1.0.1) (2024-10-29)
 
 
