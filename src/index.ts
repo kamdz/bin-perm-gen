@@ -1,4 +1,4 @@
-interface Options {
+export interface Options {
   /**
    * The format of the data returned by the generator.
    * @default 'boolean'
@@ -70,4 +70,5 @@ function* getBinaryPermutations(n: number, options: Options = {}): Generator<boo
     }
   }
 }
+
 export default getBinaryPermutations;
