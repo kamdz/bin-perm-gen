@@ -47,6 +47,18 @@ for (const permutation of generatorWithOptions) {
 const generatedArray = [...getBinaryPermutations(4)];
 ```
 
+### Command Line Interface (CLI)
+You can also use it via the command line:
+
+```bash
+npx bin-perm-gen 3
+# [
+#   [ false, false, false ],
+#   [ false, false, true ],
+#   [ false, true, false ],
+# ...
+```
+
 ## 🔧 API
 
 ### `getBinaryPermutations(n: number, options?: Options): Generator<string | number[] | boolean[]>`
