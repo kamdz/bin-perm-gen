@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/kamdz/bin-perm-gen/compare/v1.0.3...v1.0.4) (2024-11-16)
+
+
+### Bug Fixes
+
+* export types ([449194f](https://github.com/kamdz/bin-perm-gen/commit/449194f54499a95d3ed990cbec967547ea2b501a))
+
 ## [1.0.3](https://github.com/kamdz/bin-perm-gen/compare/v1.0.2...v1.0.3) (2024-10-29)
 
 
