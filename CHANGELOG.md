@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/kamdz/bin-perm-gen/compare/v1.0.4...v1.0.5) (2024-11-27)
+
+
+### Bug Fixes
+
+* **deps:** bump cross-spawn in the npm_and_yarn group ([2b3b3bc](https://github.com/kamdz/bin-perm-gen/commit/2b3b3bc6b095be16c5e14962cee4402e144ab671))
+
 ## [1.0.4](https://github.com/kamdz/bin-perm-gen/compare/v1.0.3...v1.0.4) (2024-11-16)
 
 
