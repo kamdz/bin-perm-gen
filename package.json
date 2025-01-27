@@ -1,6 +1,6 @@
 {
   "name": "bin-perm-gen",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate binary permutations with customizable formats and filters. Lightweight, zero-dependency, and efficient for handling large inputs using ES6 generators.",
   "keywords": [
     "binary permutations",

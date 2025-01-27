@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/kamdz/bin-perm-gen/compare/v1.0.5...v1.0.6) (2025-01-27)
+
+
+### Bug Fixes
+
+* exports ([3e944e4](https://github.com/kamdz/bin-perm-gen/commit/3e944e47000f9bef2036958ff0139f5e61598d05))
+
 ## [1.0.5](https://github.com/kamdz/bin-perm-gen/compare/v1.0.4...v1.0.5) (2024-11-27)
 
 
