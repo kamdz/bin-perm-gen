@@ -1,4 +1,4 @@
-# ⚡ Binary Permutations Generator
+# 🔟 Binary Permutations Generator
 
 A fast, zero-dependency generator for creating binary permutations with customizable format and filtering options. The use of **ES6 generators** allows this package to handle large values of `n` efficiently. Permutations are generated on-the-fly, ensuring low memory usage and smooth high performance.
 
