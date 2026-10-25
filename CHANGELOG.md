@@ -1,3 +1,5 @@
+# Changelog
+
 ## [1.0.6](https://github.com/kamdz/bin-perm-gen/compare/v1.0.5...v1.0.6) (2025-01-27)
 
 ### Bug Fixes
