@@ -61,12 +61,12 @@ npx bin-perm-gen 4 --min-ones 2 --max-ones 2 --format number
 # ...
 ```
 
-| Option                  | Description                                      |
-| ----------------------- | ------------------------------------------------ |
-| `-f, --format <format>` | `string` (default), `number` or `boolean`        |
-| `--min-ones <k>`        | minimum number of ones                           |
-| `--max-ones <k>`        | maximum number of ones                           |
-| `-h, --help`            | show help                                        |
+| Option                  | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `-f, --format <format>` | `string` (default), `number` or `boolean` |
+| `--min-ones <k>`        | minimum number of ones                    |
+| `--max-ones <k>`        | maximum number of ones                    |
+| `-h, --help`            | show help                                 |
 
 Output is streamed one permutation per line, so it can be piped (`npx bin-perm-gen 30 | head`).
 
