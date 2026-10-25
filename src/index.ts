@@ -43,7 +43,7 @@ const assertInteger = (value: number, name: string, min = 0): void => {
  *
  * @param n - The number of bits (a non-negative integer).
  * @param options - Output format and filters for the number of ones.
- * @throws {RangeError} When `n`, `minOnes` or `maxOnes` is not a non-negative integer.
+ * @throws {RangeError} When `n`, `minOnes` or `maxOnes` is not a non-negative integer, or `format` is unknown.
  *
  * @example
  * for (const perm of getBinaryPermutations(3, { format: 'string', minOnes: 2 })) {
@@ -59,6 +59,9 @@ export function getBinaryPermutations<F extends Format = 'boolean'>(
   assertInteger(n, 'n');
   assertInteger(minOnes, 'minOnes');
   assertInteger(maxOnes, 'maxOnes');
+  if (!Object.hasOwn(formatters, format)) {
+    throw new RangeError(`format must be one of: ${Object.keys(formatters).join(', ')}`);
+  }
 
   // Validation runs eagerly (above); the actual work happens in the inner generator.
   return generate(n, Math.min(minOnes, n + 1), Math.min(maxOnes, n), format as F);

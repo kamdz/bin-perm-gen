@@ -94,6 +94,11 @@ describe('getBinaryPermutations', () => {
     assert.throws(() => getBinaryPermutations(1.5), RangeError);
     assert.throws(() => getBinaryPermutations(3, { minOnes: -1 }), /minOnes/);
     assert.throws(() => getBinaryPermutations(3, { maxOnes: Number.NaN }), /maxOnes/);
+    assert.throws(() => getBinaryPermutations(3, { format: 'hex' as 'string' }), {
+      name: 'RangeError',
+      message: 'format must be one of: boolean, number, string'
+    });
+    assert.throws(() => getBinaryPermutations(3, { format: 'toString' as 'string' }), RangeError);
   });
 });
 
@@ -111,5 +116,9 @@ describe('cli', () => {
 
   it('fails on invalid input', () => {
     assert.throws(() => execFileSync(process.execPath, [cli, 'abc'], { stdio: 'pipe' }), /n must be/);
+    assert.throws(
+      () => execFileSync(process.execPath, [cli, '3', 'typo'], { stdio: 'pipe' }),
+      /unexpected argument: typo/
+    );
   });
 });

@@ -37,6 +37,8 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (positionals.length > 1) throw new RangeError(`unexpected argument: ${positionals[1]}`);
+
   const format = values.format as Format;
   if (!FORMATS.includes(format)) throw new RangeError(`format must be one of: ${FORMATS.join(', ')}`);
 
