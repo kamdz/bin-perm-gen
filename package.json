@@ -1,6 +1,6 @@
 {
   "name": "bin-perm-gen",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Generate binary permutations with customizable formats and filters. Lightweight, zero-dependency and lazy, using generators.",
   "keywords": [
     "binary permutations",

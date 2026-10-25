@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/kamdz/bin-perm-gen/compare/v1.0.6...v2.0.0) (2026-10-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* ESM-only package, requires Node >=22.12. Arguments are validated eagerly and throw RangeError. The CLI prints one permutation per line (string format by default) instead of a JSON array of booleans.
+
+### Features
+
+* modernize stack and rewrite generator ([2b4fb31](https://github.com/kamdz/bin-perm-gen/commit/2b4fb3125cd35d214bd4a002cf2149779e6b8265))
+
+
+### Bug Fixes
+
+* **deps:** bump @octokit/endpoint from 10.1.1 to 10.1.3 in the npm_and_yarn group ([5badade](https://github.com/kamdz/bin-perm-gen/commit/5badade7eec2bcf209830755cce08f7bc36d28db))
+* **deps:** bump @octokit/endpoint in the npm_and_yarn group ([4723785](https://github.com/kamdz/bin-perm-gen/commit/472378563dda216babb4197011b647528146ef24))
+* validate format eagerly and reject extra CLI arguments ([6e13ef5](https://github.com/kamdz/bin-perm-gen/commit/6e13ef5e4f5e2a5cffd283881d3a95836e05e95e))
+
 ## [1.0.6](https://github.com/kamdz/bin-perm-gen/compare/v1.0.5...v1.0.6) (2025-01-27)
 
 ### Bug Fixes
