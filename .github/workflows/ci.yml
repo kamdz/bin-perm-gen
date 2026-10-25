@@ -1,49 +1,48 @@
-name: Continuous Integration
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  code-check:
-    name: Lint, Format, Typings
+  check:
+    name: Lint, types, build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Enable corepack
-        run: corepack enable
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
         with:
-          node-version: 'lts/*'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Lint code
-        run: yarn lint
-      - name: Format code
-        run: yarn format
-      - name: Type check
-        run: yarn type-check
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx biome ci .
+      - run: npm run typecheck
+      - run: npm run build
+
   test:
-    name: Test
+    name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Enable corepack
-        run: corepack enable
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
         with:
-          node-version: 'lts/*'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Run unit tests
-        run: yarn test
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test

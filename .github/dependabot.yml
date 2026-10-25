@@ -1,46 +1,26 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: 'daily'
+      interval: weekly
+    cooldown:
+      default-days: 7
     commit-message:
-      prefix: 'fix'
-      prefix-development: 'chore'
-      include: 'scope'
-    open-pull-requests-limit: 20
+      prefix: chore
+      include: scope
     groups:
-      major-dependencies:
-        patterns:
-          - '*'
-        update-types:
-          - 'major'
-        dependency-type: 'production'
-      minor-patch-dependencies:
-        patterns:
-          - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
-        dependency-type: 'production'
-      major-dev-dependencies:
-        patterns:
-          - '*'
-        update-types:
-          - 'major'
-        dependency-type: 'development'
-      minor-patch-dev-dependencies:
-        patterns:
-          - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
-        dependency-type: 'development'
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+      dev-dependencies:
+        dependency-type: development
+
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: 'weekly'
+      interval: weekly
+    cooldown:
+      default-days: 7
     commit-message:
-      prefix: 'fix'
-      prefix-development: 'chore'
-      include: 'scope'
+      prefix: ci
+    groups:
+      actions:
+        patterns: ['*']

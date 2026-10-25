@@ -1,30 +1,43 @@
 name: Release
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
+
+permissions: {}
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
     steps:
-      - name: Checkout current branch
-        uses: actions/checkout@v4
-      - name: Enable corepack
-        run: corepack enable
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: googleapis/release-please-action@v5
+        id: release
         with:
-          node-version: 'lts/*'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Build package
-        run: yarn build
-      - name: Semantic Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          release-type: node
+          # A PAT lets CI run on the release PR; falls back to the built-in token.
+          token: ${{ secrets.GH_TOKEN || github.token }}
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing (OIDC) + provenance
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm publish
